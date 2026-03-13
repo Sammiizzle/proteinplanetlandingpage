@@ -196,3 +196,15 @@ h1 {
     margin-bottom: 10px;
     color: white;
 }
+
+.logo-img {
+    height: 50px; /* Adjust this height to fit your navbar perfectly */
+    width: auto;  /* Keeps the proportions correct */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05); /* Gives it a little 'pop' when hovered */
+    filter: drop-shadow(0 0 10px #7efcff); /* Adds that sci-fi glow! */
+}
