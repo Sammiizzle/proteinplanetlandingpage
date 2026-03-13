@@ -198,7 +198,7 @@ h1 {
 }
 
 .logo-img {
-    height: 80px; /* Adjust this height to fit your navbar perfectly */
+    height: 111px; /* Adjust this height to fit your navbar perfectly */
     width: auto;  /* Keeps the proportions correct */
     display: block;
     transition: transform 0.3s ease;
