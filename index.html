@@ -17,61 +17,47 @@
 <body>
 
 <nav class="navbar">
-<a href="index.html" class="logo">
-    <img src="logo.jpg"class="logo-img">
-</a>
-</nav>
+    <a href="index.html" class="logo">
+        <img src="logo.jpg" class="logo-img" alt="Protein Planet Logo">
+    </a>
 
-<ul class="navlinks">
-<li><a href="mission.html">MISSION LOG</a></li>
-<li><a href="exploration.html">EXPLORATION</a></li>
-<li><a href="samples.html">SAMPLES</a></li>
-<li><a href="headquarters.html">HEADQUARTERS</a></li>
-</ul>
+    <ul class="navlinks">
+        <li><a href="mission.html">MISSION LOG</a></li>
+        <li><a href="exploration.html">EXPLORATION</a></li>
+        <li><a href="samples.html">SAMPLES</a></li>
+        <li><a href="headquarters.html">HEADQUARTERS</a></li>
+    </ul>
 
-<button class="navbutton" onclick="location.href='headquarters.html'">
-JOIN
-</button>
+    <button class="navbutton" onclick="location.href='headquarters.html'">
+        JOIN
+    </button>
 </nav>
 
 <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+        <h1>THE PROTEIN REVOLUTION<br>YOU READY?</h1>
+        <p class="mission-tease">
+            A transmission has been received from a stranded expedition pilot.
+        </p>
 
-<div class="overlay"></div>
+        <div class="hourglass-container">
+            <div class="hourglass">⌛</div>
+        </div>
 
-<div class="hero-content">
-<h1>THE PROTEIN REVOLUTION<br>YOU READY?</h1>
-<p class="mission-tease">
-A transmission has been received from a stranded expedition pilot.
-Recovered samples are currently under analysis.
-</p>
-
-<div class="hourglass-container">
-<div class="hourglass">⌛</div>
-</div>
-
-<h2 class="prelaunch">PRE-LAUNCH</h2>
-<div id="countdown"></div>
-<p class="analysis">ANALYZING SAMPLE...</p>
-<div class="buttons">
-<p class="mission-id">
-TRANSMISSION SOURCE: EXPEDITION AURORA-9
-</p>
-
-<a href="exploration.html" class="btn">
-TRACK THE MISSION
-</a>
-
-<a href="headquarters.html" class="btn">
-ENLIST IN HEADQUARTERS
-</a>
-
-</div>
-
-</div>
+        <h2 class="prelaunch">PRE-LAUNCH</h2>
+        <div id="countdown"></div>
+        <p class="analysis">ANALYZING SAMPLE...</p>
+        
+        <p class="mission-id">TRANSMISSION SOURCE: EXPEDITION AURORA-9</p>
+        <div class="buttons">
+            <a href="exploration.html" class="btn">TRACK THE MISSION</a>
+            <a href="headquarters.html" class="btn">ENLIST IN HEADQUARTERS</a>
+        </div>
+    </div>
 </section>
 
 <script src="script.js"></script>
-
 </body>
 
 </html>
