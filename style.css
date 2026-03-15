@@ -58,8 +58,7 @@ body {
 h1 {
     font-size: clamp(1.8rem, 5vh, 4rem);
     letter-spacing: 5px;
-    text-align: center;
-    color: white;
+    margin-bottom: 10px; /* Space between the two titles */
     text-shadow: 0 0 20px var(--glow-color);
 }
 
@@ -92,10 +91,11 @@ h1 {
 }
 
 .prelaunch {
-    letter-spacing: 10px;
-    font-size: 1.2rem;
+    letter-spacing: 12px;
+    font-size: 1.1rem;
     color: var(--text-cyan);
-    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(126, 252, 255, 0.5);
+    margin: 0; /* Reset margins to keep it tight to the H1 */
 }
 
 #countdown {
@@ -156,4 +156,13 @@ h1 {
 
 @keyframes blinker {
     50% { opacity: 0; }
+}
+
+.top-section {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stacks H1 and H2 vertically */
+    align-items: center;
+    margin-top: 20px;
 }
