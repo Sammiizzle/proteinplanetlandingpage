@@ -187,3 +187,16 @@ h1 {
     box-shadow: 0 0 25px var(--glow-color);
     transform: translateY(-5px);
 }
+
+.mission-id {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    opacity: 0.6;
+    color: var(--text-cyan);
+    
+    /* ADJUST THIS LINE: */
+    margin-bottom: 40px; /* Increased from 15px or 20px to push the buttons down */
+    
+    display: block; /* Ensures it takes up its own line and respects the margin */
+    text-align: center;
+}
