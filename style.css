@@ -155,11 +155,12 @@ h1 {
     font-family: 'Orbitron', sans-serif;
 }
 
-/* BOTTOM: Buttons */
+/* BOTTOM: Buttons & Transmission ID */
 .bottom-section {
     width: 100%;
     text-align: center;
-    margin-bottom: 30px;
+    padding-bottom: 40px; /* Gives the whole bottom area room from the screen edge */
+    z-index: 20;
 }
 
 .buttons {
@@ -194,9 +195,9 @@ h1 {
     opacity: 0.6;
     color: var(--text-cyan);
     
-    /* ADJUST THIS LINE: */
-    margin-bottom: 40px; /* Increased from 15px or 20px to push the buttons down */
+    /* This creates the gap between the text and the buttons */
+    margin-bottom: 50px; 
     
-    display: block; /* Ensures it takes up its own line and respects the margin */
-    text-align: center;
+    display: block; 
+    text-transform: uppercase;
 }
