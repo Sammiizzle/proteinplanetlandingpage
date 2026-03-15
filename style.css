@@ -11,16 +11,32 @@
     margin: 0; padding: 0; box-sizing: border-box;
 }
 
+/* Custom Variables for that Glowing Cyan/Amber HUD look */
+:root {
+  --hud-cyan: #00f2ff;
+  --glow: 0 0 15px rgba(0, 242, 255, 0.7);
+  --bg-dark: #050505;
+}
+
 body {
-    background-color: #050505;
-    color: white;
-    font-family: 'Orbitron', sans-serif;
-    height: 100vh;
-    overflow: hidden;
-    /* CRT Scanline Effect */
-    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                      linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-    background-size: 100% 4px, 3px 100%;
+  background-color: var(--bg-dark);
+  color: white;
+  font-family: 'Orbitron', sans-serif; /* Keep as fallback */
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* THE SCANLINE EFFECT (Makes it look like a CRT monitor) */
+body::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 10;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
 }
 
 /* 3. Hero & Space Atmosphere */
@@ -144,44 +160,24 @@ h1 {
 }
 
 /* The Button itself */
+/* MISSION BUTTONS (Black Ops 3 Style) */
 .btn {
-    /* 1. Basic Shape & Layout */
-    display: inline-block;
-    min-width: 200px; 
-    padding: 18px 30px;
-    
-    /* 2. Remove "Ugly" Link Defaults */
-    text-decoration: none !important; /* Kills the underline */
-    color: white !important;          /* Forces white text */
-    
-    /* 3. Typography */
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-align: center;
-
-    /* 4. Glassmorphism Design */
-    background: rgba(188, 19, 254, 0.1); /* Slight purple tint */
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--text-cyan);
-    border-radius: 4px;
-    
-    /* 5. Animation Prep */
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
+  background: rgba(0, 242, 255, 0.05);
+  border: 1px solid var(--hud-cyan);
+  color: var(--hud-cyan);
+  padding: 15px 30px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 3px;
+  position: relative;
+  transition: 0.3s;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%); /* Angular military cut */
 }
 
-/* The Hover State - Harvard Grade Energy */
 .btn:hover {
-    background: var(--glow-color); /* Fills with Neon Purple */
-    color: #000 !important;        /* Flips text to black for contrast */
-    box-shadow: 0 0 30px var(--glow-color);
-    transform: translateY(-5px) scale(1.05);
-    letter-spacing: 5px;
+  background: var(--hud-cyan);
+  color: black;
+  box-shadow: var(--glow);
 }
 
 /* The "Shine" Sweep Effect */
