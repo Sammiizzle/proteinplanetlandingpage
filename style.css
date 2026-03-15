@@ -8,9 +8,7 @@
 
 /* 2. Global Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0; padding: 0; box-sizing: border-box;
 }
 
 body {
@@ -25,7 +23,7 @@ body {
     background-size: 100% 4px, 3px 100%;
 }
 
-/* 3. Layout Fixes */
+/* 3. Hero & Space Atmosphere */
 .hero {
     height: 100vh;
     width: 100%;
@@ -34,215 +32,148 @@ body {
     align-items: center;
     position: relative;
     background: url("assets/planet.jpg") center/cover no-repeat;
+    z-index: 1;
 }
 
-.hero-content {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    max-width: 1200px;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Keeps Top and Bottom at the edges */
-    align-items: center; /* Forces everything in the flow to center */
-}
-
-/* TOP: Centered Header */
-.top-section {
-    text-align: center;
-    margin-top: 40px;
-    z-index: 20;
-}
-
-h1 {
-    font-size: clamp(1.8rem, 5vh, 4rem);
-    text-shadow: 2px 0 var(--accent-color), -2px 0 var(--text-cyan);
-    animation: glitch 3s infinite;
-    letter-spacing: 8px;
-}
-
-@keyframes glitch {
-    0% { text-shadow: 2px 0 var(--accent-color), -2px 0 var(--text-cyan); }
-    50% { text-shadow: -2px 0 var(--accent-color), 2px 0 var(--text-cyan); }
-    100% { text-shadow: 2px 0 var(--accent-color), -2px 0 var(--text-cyan); }
-}
-
-.prelaunch {
-    letter-spacing: 12px;
-    font-size: 1.1rem;
-    color: var(--text-cyan);
-    text-shadow: 0 0 10px var(--text-cyan);
-}
-
-/* MIDDLE: The "Absolute" Center-Col Fix */
-.center-col {
-    position: absolute;
-    top: 55%; /* Centered vertically relative to screen */
-    left: 50%;
-    transform: translate(-50%, -50%); /* The magic centering formula */
-    text-align: center;
-    width: 100%;
-}
-
-#countdown {
-    font-size: clamp(2.5rem, 10vh, 5rem);
-    font-weight: 700;
-    text-shadow: 0 0 30px var(--glow-color);
-}
-
-/* LEFT SIDE: Realistic Specimen Jar */
-/* THE HOURGLASS - FIXED & GUARANTEED VISIBLE */
-.hourglass-container {
-    position: absolute;
-    left: 40px; 
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(31, 8, 59, 0.5); /* Deep Purple Glass */
-    backdrop-filter: blur(15px);
-    border: 1px solid #bc13fe; /* Neon Purple Border */
-    padding: 30px 20px;
-    border-radius: 20px;
-    z-index: 100; 
-    width: 100px; /* Fixed width */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* The Glass Specimen Jar */
-.glass-vessel {
-    width: 40px;
-    height: 80px; /* If this is missing, the jar is invisible! */
-    border: 2px solid #7efcff; /* High-tech Cyan */
-    position: relative;
-    overflow: hidden; 
-    background: rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0 15px #bc13fe;
-}
-
-/* The Glowing Protein Fluid */
-.sand-top, .sand-bottom {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    background: #ff00de; /* Magenta */
-    box-shadow: 0 0 10px #ff00de;
-}
-
-.sand-top {
-    top: 0;
-    height: 50%; 
-    animation: drain 5s infinite linear;
-}
-
-.sand-bottom {
-    bottom: 0;
-    height: 0%; 
-    animation: fill 5s infinite linear;
-}
-
-/* Movement Animations */
-@keyframes drain {
-    0% { height: 50%; }
-    100% { height: 0%; }
-}
-
-@keyframes fill {
-    0% { height: 0%; }
-    100% { height: 50%; }
-}
-
-.status-tag {
-    font-size: 0.6rem;
-    letter-spacing: 2px;
-    color: #7efcff;
-    margin-top: 10px;
-    text-align: center;
-    font-family: 'Orbitron', sans-serif;
-}
-
-/* BOTTOM: Buttons & Transmission ID */
-.bottom-section {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 40px; /* Gives the whole bottom area room from the screen edge */
-    z-index: 20;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.btn {
-    backdrop-filter: blur(5px);
-    background: rgba(188, 19, 254, 0.05);
-    border: 1px solid rgba(126, 252, 255, 0.3);
-    overflow: hidden;
-    position: relative;
-}
-
-.btn:hover {
-    background: rgba(188, 19, 254, 0.2);
-    box-shadow: 0 0 20px var(--glow-color), inset 0 0 10px var(--glow-color);
-    letter-spacing: 4px; /* Text physically expands */
-    color: #fff;
-}
-
-/* Add a "Shine" sweep effect */
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
-}
-
-.mission-id {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    opacity: 0.6;
-    color: var(--text-cyan);
-    
-    /* This creates the gap between the text and the buttons */
-    margin-bottom: 50px; 
-    
-    display: block; 
-    text-transform: uppercase;
-}
-
-/* Animated Space Dust */
+/* Moving Space Dust */
 .hero::after {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: radial-gradient(circle, #fff 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
+    background-size: 80px 80px;
+    opacity: 0.2;
     animation: drift 60s infinite linear;
     pointer-events: none;
+    z-index: -1;
 }
 
-@keyframes drift {
-    from { background-position: 0 0; }
-    to { background-position: 500px 1000px; }
-}
-
-.corner-data {
+.overlay {
     position: absolute;
-    font-size: 0.5rem;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(31, 8, 59, 0.3) 0%, rgba(0,0,0,0.85) 100%);
+    z-index: 0;
+}
+
+/* 4. Main HUD Layout */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* TOP SECTION: Glitch Title */
+.top-section { text-align: center; margin-top: 20px; }
+
+h1 {
+    font-size: clamp(1.5rem, 5vh, 3.5rem);
+    letter-spacing: 10px;
+    text-shadow: 3px 0 var(--accent-color), -3px 0 var(--text-cyan);
+    animation: glitch 4s infinite;
+}
+
+.prelaunch {
+    font-size: 1rem;
+    letter-spacing: 15px;
     color: var(--text-cyan);
-    opacity: 0.4;
-    letter-spacing: 2px;
-    z-index: 50;
-    font-family: monospace;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* LEFT SIDE: Specimen Jar */
+.hourglass-container {
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glow-color);
+    padding: 25px 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.glass-vessel {
+    width: 35px; height: 70px;
+    border: 2px solid var(--text-cyan);
+    position: relative; overflow: hidden;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.sand-top, .sand-bottom {
+    position: absolute; left: 0; width: 100%;
+    background: var(--accent-color);
+}
+
+.sand-top { top: 0; height: 50%; animation: drain 5s infinite linear; }
+.sand-bottom { bottom: 0; height: 0%; animation: fill 5s infinite linear; }
+
+/* CENTER: Countdown */
+.center-col { text-align: center; position: absolute; top: 50%; transform: translateY(-50%); }
+
+#countdown {
+    font-size: clamp(2.5rem, 10vh, 5rem);
+    text-shadow: 0 0 30px var(--glow-color);
+}
+
+.analysis { font-size: 0.7rem; letter-spacing: 4px; opacity: 0.5; margin-top: 10px; }
+
+/* BOTTOM: Action Area */
+.bottom-section { width: 100%; text-align: center; margin-bottom: 20px; }
+
+.mission-id {
+    font-size: 0.7rem; letter-spacing: 3px; color: var(--text-cyan);
+    margin-bottom: 40px; display: block;
+}
+
+.buttons { display: flex; justify-content: center; gap: 20px; }
+
+.btn {
+    min-width: 180px; padding: 15px 25px;
+    color: white; text-decoration: none; font-size: 0.75rem; font-weight: bold;
+    border: 1px solid var(--text-cyan);
+    background: rgba(188, 19, 254, 0.1);
+    backdrop-filter: blur(5px);
+    position: relative; overflow: hidden;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(188, 19, 254, 0.3);
+    box-shadow: 0 0 20px var(--glow-color);
+    letter-spacing: 3px;
+    transform: translateY(-3px);
+}
+
+.btn::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::before { left: 100%; }
+
+/* HUD Extras */
+.corner-data {
+    position: absolute; font-size: 0.5rem; color: var(--text-cyan);
+    opacity: 0.4; letter-spacing: 2px; font-family: monospace;
 }
 .top-left { top: 20px; left: 20px; }
 .bottom-right { bottom: 20px; right: 20px; }
+
+/* Animations */
+@keyframes glitch {
+    0%, 90%, 100% { transform: translate(0); }
+    92% { transform: translate(-3px, 2px); }
+    94% { transform: translate(3px, -2px); }
+}
+@keyframes drift { from { background-position: 0 0; } to { background-position: 1000px 1000px; } }
+@keyframes drain { 0% { height: 50%; } 100% { height: 0%; } }
+@keyframes fill { 0% { height: 0%; } 100% { height: 50%; } }
