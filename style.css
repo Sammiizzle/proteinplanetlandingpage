@@ -87,16 +87,19 @@ h1 {
 /* LEFT SIDE: Realistic Specimen Jar */
 .hourglass-container {
     position: absolute;
-    left: 40px;
+    left: 40px; 
     top: 50%;
     transform: translateY(-50%);
-    background: var(--glass-bg);
+    background: var(--glass-bg); /* Check that this variable is defined at the top! */
     backdrop-filter: blur(15px);
     border: 1px solid rgba(188, 19, 254, 0.3);
-    padding: 25px;
-    border-radius: 15px;
-    z-index: 30;
-    text-align: center;
+    padding: 30px 20px;
+    border-radius: 20px;
+    z-index: 100; /* Keeps it above the overlay */
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .glass-vessel {
@@ -104,24 +107,50 @@ h1 {
     height: 80px;
     border: 2px solid var(--text-cyan);
     position: relative;
-    overflow: hidden;
-    background: rgba(0,0,0,0.4);
+    overflow: hidden; /* This "clips" the sand so it stays inside */
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 15px var(--glow-color);
     margin-bottom: 10px;
 }
 
 .sand-top, .sand-bottom {
     position: absolute;
-    left: 0; width: 100%;
+    left: 0;
+    width: 100%;
     background: var(--accent-color);
     box-shadow: 0 0 10px var(--accent-color);
 }
 
-.sand-top { top: 0; height: 50%; animation: drain 5s infinite linear; }
-.sand-bottom { bottom: 0; height: 0%; animation: fill 5s infinite linear; }
+.sand-top {
+    top: 0;
+    height: 50%; /* Starts half full */
+    animation: drain 5s infinite linear;
+}
 
-@keyframes drain { 0% { height: 50%; } 100% { height: 0%; } }
-@keyframes fill { 0% { height: 0%; } 100% { height: 50%; } }
+.sand-bottom {
+    bottom: 0;
+    height: 0%; /* Starts empty */
+    animation: fill 5s infinite linear;
+}
+
+/* The movement logic */
+@keyframes drain {
+    0% { height: 50%; }
+    100% { height: 0%; }
+}
+
+@keyframes fill {
+    0% { height: 0%; }
+    100% { height: 50%; }
+}
+
+.status-tag {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--text-cyan);
+    margin-top: 5px;
+    opacity: 0.8;
+}
 
 /* BOTTOM: Buttons */
 .bottom-section {
