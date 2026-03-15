@@ -115,11 +115,41 @@ h1 {
 }
 
 .glass-vessel {
-    width: 35px; height: 70px;
-    border: 2px solid var(--text-cyan);
-    position: relative; overflow: hidden;
-    background: rgba(0,0,0,0.5);
-    box-shadow: 0 0 15px var(--glow-color);
+  width: 120px;
+  height: 200px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 60px; /* Capsule shape */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px); /* Distorts the planet behind it */
+  position: relative;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 242, 255, 0.2), 
+    0 0 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Specular Reflection (The "Hard-Ass" Detail) */
+.glass-vessel::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 15%;
+  height: 60%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  border-radius: 50px;
+  filter: blur(2px);
+}
+
+/* The Falling "Protein" Sand */
+.sand-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%; /* Animated height via JS */
+  background: linear-gradient(to top, #00f2ff, #008891);
+  box-shadow: 0 0 15px #00f2ff;
+  transition: height 0.5s ease;
 }
 
 .sand-top, .sand-bottom {
