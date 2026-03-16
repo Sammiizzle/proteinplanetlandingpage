@@ -1,67 +1,54 @@
-/**
- * PROTEIN PLANET - OPERATING SYSTEM v1.0.4
- * MISSION: LONE STAR-1
- */
+// --- PARALLAX EFFECT ---
+document.addEventListener('mousemove', (e) => {
+    const planet = document.querySelector('.planet-layer');
+    const x = (window.innerWidth / 2 - e.pageX) / 60;
+    const y = (window.innerHeight / 2 - e.pageY) / 60;
+    planet.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+});
 
-// --- 1. THE TERMINAL GLITCH ENGINE ---
+// --- TERMINAL GLITCH ---
 const analysisText = document.querySelector('.analysis');
-const originalMessage = "ANALYZING SAMPLE: PT-99 [EXTRATERRESTRIAL]";
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+const msg = "ANALYZING BIOMETRIC SAMPLES: [STABLE]";
+const chars = "!@#$%^&*()_PX0123456789";
 
-function glitchEffect(element, message) {
-    if (!element) return;
-    let iteration = 0;
-    
+function glitch(element, text) {
+    let iter = 0;
     const interval = setInterval(() => {
-        element.innerText = message.split("").map((char, index) => {
-            if (index < iteration) return message[index];
+        element.innerText = text.split("").map((char, index) => {
+            if (index < iter) return text[index];
             return chars[Math.floor(Math.random() * chars.length)];
         }).join("");
-        
-        if (iteration >= message.length) clearInterval(interval);
-        iteration += 1/2; // Speed of decoding
-    }, 30);
+        if (iter >= text.length) clearInterval(interval);
+        iter += 1/3;
+    }, 40);
 }
 
-// --- 2. THE PRECISION MISSION TIMER ---
-const countdownElement = document.getElementById("countdown");
-const launchDate = new Date("July 1, 2026 00:00:00").getTime();
-
-const updateTimer = () => {
-    const now = new Date().getTime();
-    const distance = launchDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // BO3 Style Formatting: DD:HH:MM:SS
-    if (countdownElement) {
-        countdownElement.innerHTML = 
-            `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-};
-
-// --- 3. THE MECHANICAL HOURGLASS (FLUID DYNAMICS) ---
+// --- COUNTDOWN & HOURGLASS ---
 let progress = 0;
 const sand = document.querySelector('.sand-bottom');
 
-const fillHourglass = () => {
-    if (progress >= 72) { // "Stabilizing" at 72%
-        // Occasional flicker/fluctuation to make it look alive
-        let fluctuation = 72 + (Math.random() * 0.5);
-        if (sand) sand.style.height = fluctuation + "%";
-    } else {
-        progress += 0.3;
-        if (sand) sand.style.height = progress + "%";
-    }
-};
-
-// --- INITIALIZE SYSTEM ---
 window.onload = () => {
-    glitchEffect(analysisText, originalMessage);
-    setInterval(updateTimer, 1000);
-    setInterval(fillHourglass, 50);
-    updateTimer(); // Run once immediately
+    glitch(analysisText, msg);
+    
+    // Smooth Bio-Fill
+    setInterval(() => {
+        if (progress < 68) {
+            progress += 0.2;
+            if (sand) sand.style.height = progress + "%";
+        }
+    }, 50);
+
+    // Standard Countdown Logic
+    const timer = document.getElementById('countdown');
+    const target = new Date("July 1, 2026 00:00:00").getTime();
+    
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = target - now;
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        timer.innerText = `${d}D:${h}H:${m}M:${s}S`;
+    }, 1000);
 };
