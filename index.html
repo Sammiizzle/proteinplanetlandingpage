@@ -15,44 +15,34 @@
         <div class="scanlines"></div>
     </div>
 
-    <main class="hero-content">
-        
-        <header class="hud-top-bar">
-            <div class="logo-section">
-                <h1 class="logo-text">PROTEIN PLANET</h1>
-                <span class="system-status"><span class="blink-dot"></span> SYSTEM: ONLINE</span>
-            </div>
-            <div class="mission-timer">
-                <span class="label">EST. ARRIVAL:</span>
-                <div id="countdown">00:00:00:00</div>
-            </div>
-        </header>
-
-        <div class="center-stage">
-            <div class="hourglass-container">
-                <div class="glass-vessel">
-                    <div class="sand-bottom"></div>
-                </div>
-                <p class="status-tag">BIO-SYNTHESIS ACTIVE</p>
-            </div>
+<main class="hero-content">
+    <nav class="lobby-menu">
+        <h2 class="menu-header">MISSION PREP</h2>
+        <div class="buttons">
+            <a href="headquarters.html" class="btn active">HEADQUARTERS</a>
+            <a href="enlist.html" class="btn">ENLIST</a>
+            <a href="mission-log.html" class="btn">MISSION LOG</a>
+            <a href="#" class="btn locked">BLACK MARKET (LOCKED)</a>
         </div>
+    </nav>
 
-        <footer class="bottom-hud">
-            <div class="terminal-box">
-                <p class="analysis">INITIALIZING SCAN...</p>
-                <div id="system-log"></div> <p class="mission-id">LOC: [SECTOR 7] // SOURCE: LONE STAR-1</p>
-            </div>
-            
-            <nav class="buttons">
-                <a href="headquarters.html" class="btn">HEADQUARTERS</a>
-                <a href="enlist.html" class="btn">ENLIST</a>
-                <a href="mission-log.html" class="btn">MISSION LOG</a>
-            </nav>
-        </footer>
+    <aside class="data-feed">
+        <div class="sample-stats">
+            <div class="stat-row"><span>SAMPLE ID:</span> <span>PT-99</span></div>
+            <div class="stat-row"><span>STABILITY:</span> <span class="amber">72%</span></div>
+            <div class="stat-row"><span>O2 LEVEL:</span> <span class="red">CRITICAL</span></div>
+        </div>
+        <div class="terminal-box">
+            <p class="analysis">INITIALIZING SCAN...</p>
+        </div>
+    </aside>
 
-        <div class="corner-data top-left-data">O2_LVL: 14% // TEMP: -140C</div>
-        <div class="corner-data bottom-right-data">LAT: 44.02 // LONG: 102.88</div>
-    </main>
+    <footer class="hud-footer">
+        <div class="footer-item"><span class="btn-icon">A</span> SELECT</div>
+        <div class="footer-item"><span class="btn-icon">B</span> BACK</div>
+        <div class="footer-timer" id="countdown">00:00:00</div>
+    </footer>
+</main>
 
     <script src="script.js"></script>
 </body>
