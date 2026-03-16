@@ -72,11 +72,6 @@ body {
     z-index: 10;
 }
 
-/* Ensure buttons are clickable */
-.buttons, .hud-footer {
-    pointer-events: auto; 
-}
-
 /* Fix the "Orange Bubble" to look like a Planet */
 .planet-layer {
     position: absolute;
@@ -100,37 +95,18 @@ body {
     font-size: 2rem;
     color: var(--bo3-orange);
     text-shadow: 0 0 10px var(--bo3-orange);
+    pointer-events: auto; 
 }
 
 .btn {
     display: block;
     color: white;
     text-decoration: none;
-    padding: 15px;
     border-left: 4px solid var(--bo3-orange);
     background: rgba(255, 78, 0, 0.1);
     margin: 10px 0;
-}
-.lobby-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.menu-header {
-    font-size: 3rem;
-    letter-spacing: 8px;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #fff;
-    width: fit-content;
-}
-
-.btn {
-    display: block;
+    pointer-events: auto; 
     width: 280px;
-    background: rgba(255, 255, 255, 0.05);
-    border-left: 0px solid var(--bo3-orange);
-    color: #fff;
     padding: 15px 20px;
     margin: 5px 0;
     text-decoration: none;
@@ -139,10 +115,24 @@ body {
     transition: 0.3s;
 }
 
+.lobby-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .btn:hover, .btn.active {
     background: linear-gradient(90deg, var(--bo3-orange) 0%, transparent 100%);
     border-left: 8px solid var(--bo3-orange);
     padding-left: 35px;
+}
+
+.menu-header {
+    font-size: 3rem;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #fff;
+    width: fit-content;
 }
 
 /* THE FISH-EYE VIGNETTE (This creates the Pod Interior feel) */
