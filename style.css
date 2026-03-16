@@ -303,3 +303,44 @@ body {
     pointer-events: none;
     opacity: 0.6;
 }
+#boot-screen {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999; /* Over everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    transition: opacity 1s ease-out;
+}
+
+.retina-scanner {
+    text-align: center;
+    color: var(--bo3-orange);
+}
+
+.eye-target {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--bo3-orange);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0 0 20px rgba(255, 78, 0, 0.2);
+}
+
+#auth-btn {
+    background: transparent;
+    border: 1px solid var(--bo3-orange);
+    color: var(--bo3-orange);
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#auth-btn:hover {
+    background: var(--bo3-orange);
+    color: #000;
+}
