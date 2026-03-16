@@ -1,202 +1,56 @@
-:root {
-    --bo3-orange: #ff4e00;
-}
-
+:root { --bo3-orange: #ff4e00; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-serif; height: 100vh; overflow: hidden; }
 
-body {
-    background: #000;
-    color: #fff;
-    font-family: 'Barlow Condensed', sans-serif;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
-
-/* BOOT SCREEN FIX */
-#boot-screen {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.eye-target {
-    width: 120px;
-    height: 120px;
-    border: 2px solid var(--bo3-orange);
-    border-radius: 50%;
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-    align-items: center;
-}
-
-.scan-line {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: var(--bo3-orange);
-    box-shadow: 0 0 10px var(--bo3-orange);
-    animation: scan 2s linear infinite;
-}
-
+/* BOOT SCREEN */
+#boot-screen { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; transition: 1s; }
+.eye-target { width: 100px; height: 100px; border: 2px solid var(--bo3-orange); border-radius: 50%; position: relative; margin-bottom: 20px; overflow: hidden; }
+.scan-line { position: absolute; width: 100%; height: 2px; background: var(--bo3-orange); box-shadow: 0 0 10px var(--bo3-orange); animation: scan 2s linear infinite; }
 @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+#auth-btn { background: transparent; border: 1px solid var(--bo3-orange); color: var(--bo3-orange); padding: 10px 20px; cursor: pointer; font-family: 'JetBrains Mono'; }
 
-#auth-btn {
-    background: transparent;
-    border: 1px solid var(--bo3-orange);
-    color: var(--bo3-orange);
-    padding: 10px 30px;
-    font-family: 'JetBrains Mono', monospace;
-    cursor: pointer;
-}
-
-/* HUD LAYOUT */
-/* Ensure the HUD is at the very front */
+/* HUD LAYOUT (The BO3 Grid) */
 .hero-content {
     position: absolute;
     inset: 0;
-    z-index: 100; 
+    z-index: 100;
     display: grid;
-    /* This makes 3 columns: Menu (left), Space (center), Data (right) */
-    grid-template-columns: 380px 1fr 300px; 
-    align-items: center;
-    padding: 50px;
-    height: 100vh;
-    width: 100vw;
-    pointer-events: none; 
-    perspective: 1200px; /* Crucial for the 3D tilt */
+    grid-template-columns: 400px 1fr 350px; /* LEFT - MIDDLE - RIGHT */
+    grid-template-rows: 100px 1fr 100px;
+    padding: 40px;
+    perspective: 1000px; /* Crucial for 3D tilt */
 }
 
-/* Fix the "Orange Bubble" to look like a Planet */
-.planet-layer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70vh; /* Scaled to screen height */
-    height: 70vh;
-    background: radial-gradient(circle at 30% 30%, var(--bo3-orange) 0%, #000 80%);
-    border-radius: 50%;
-    z-index: 1; /* Lowest layer */
-    box-shadow: 0 0 100px rgba(255, 78, 0, 0.3), inset -20px -20px 50px #000;
-}
+/* TOP RIGHT DATA */
+.hud-header { grid-column: 3; text-align: right; font-family: 'JetBrains Mono'; color: var(--bo3-orange); }
 
-/* The Countdown Footer */
-.hud-footer {
-    position: fixed;
-    bottom: 40px;
-    left: 60px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2rem;
-    color: var(--bo3-orange);
-    text-shadow: 0 0 10px var(--bo3-orange);
-    pointer-events: auto; 
-}
-
-.btn {
-    display: block;
-    width: 250px; /* Consistent width */
-    background: rgba(255, 78, 0, 0.1);
-    border-left: 4px solid var(--bo3-orange);
-    color: #fff;
-    padding: 12px 20px;
-    margin: 8px 0;
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
-    transition: 0.3s ease;
-}
-
+/* MENU TILT */
 .lobby-menu {
-    grid-column: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* This tilts the left side of the menu AWAY and the right side TOWARD the user */
-    transform: rotateY(25deg);
+    grid-column: 1; grid-row: 2;
+    transform: rotateY(20deg) translateZ(50px);
     transform-style: preserve-3d;
     pointer-events: auto;
 }
-
-.btn:hover, .btn.active {
-    background: linear-gradient(90deg, var(--bo3-orange) 0%, transparent 100%);
-    border-left: 8px solid var(--bo3-orange);
-    padding-left: 35px;
+.menu-header { font-size: 2.2rem; border-bottom: 2px solid #fff; width: fit-content; margin-bottom: 20px; }
+.btn { 
+    display: block; width: 260px; padding: 12px; margin: 8px 0;
+    background: rgba(255, 78, 0, 0.1); border-left: 4px solid var(--bo3-orange);
+    color: #fff; text-decoration: none; font-weight: 800; transition: 0.3s;
 }
+.btn:hover, .btn.active { background: linear-gradient(90deg, var(--bo3-orange), transparent); padding-left: 25px; }
 
-.menu-header {
-    font-size: 2.2rem; /* Shrunk from 3rem */
-    letter-spacing: 4px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #fff;
-    width: fit-content;
-    text-transform: uppercase;
-}
-
-/* THE FISH-EYE VIGNETTE (This creates the Pod Interior feel) */
-.pod-frame {
-    position: fixed;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    /* This creates the heavy 'curved' shadow of the helmet/hatch */
-    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.95) 100%);
-    box-shadow: inset 0 0 200px #000;
-}
-
-/* ADDING THE "DIRTY GLASS" */
-.pod-frame {
-    position: fixed;
-    inset: 0;
-    z-index: 50; /* Sits between the planet and the buttons */
-    pointer-events: none;
-    /* Heavier fish-eye effect */
-    background: radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.8) 70%, #000 100%);
-}
-
-.helmet-dash {
-    position: absolute;
-    bottom: -10%;
-    left: 0;
-    width: 100%;
-    height: 20%;
-    background: linear-gradient(to top, rgba(255, 78, 0, 0.3), transparent);
-    z-index: 7;
-    filter: blur(20px);
-}
-
-.lobby-menu {
-    /* THIS TILTS THE BUTTONS INWARD */
-    transform: rotateY(20deg) rotateX(5deg);
-    transform-style: preserve-3d;
-}
-
-/* THE PLANET (Moving away from the "Orange Bubble") */
-/* Ensure the planet is centered and behind everything */
+/* THE POD ENVIRONMENT */
 .planet-layer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* Pushes it behind the HUD in 3D space */
-    transform: translate(-50%, -50%) translateZ(-300px); 
-    width: 65vh; /* Shrunk slightly so it doesn't crowd the menu */
-    height: 65vh;
-    background: radial-gradient(circle at 30% 30%, #ff4e00 0%, #200 60%, #000 100%);
-    border-radius: 50%;
-    z-index: 1;
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 65vh; height: 65vh; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--bo3-orange) 0%, #000 70%);
     box-shadow: 0 0 80px rgba(255, 78, 0, 0.2), inset -20px -20px 60px #000;
+    z-index: 1;
 }
-
-#particle-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 6; /* Higher than the planet, lower than the HUD */
-    pointer-events: none;
+.pod-frame {
+    position: fixed; inset: 0; z-index: 50; pointer-events: none;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.85) 80%, #000 100%);
 }
+#particle-canvas { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
+.blink { animation: blinker 1.5s linear infinite; }
+@keyframes blinker { 50% { opacity: 0; } }
