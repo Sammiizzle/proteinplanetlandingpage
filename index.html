@@ -8,18 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div class="pod-viewport">
-        <div class="space-bg"></div>
         <div class="planet-layer"></div>
         <div class="pod-frame"></div>
         <div class="scanlines"></div>
     </div>
 
     <main class="hero-content">
+        
         <header class="hud-top-bar">
             <div class="logo-section">
                 <h1 class="logo-text">PROTEIN PLANET</h1>
-                <span class="system-status"><span class="blink-dot"></span> SYSTEM: CRITICAL_STABILITY</span>
+                <span class="system-status"><span class="blink-dot"></span> SYSTEM: ONLINE</span>
             </div>
             <div class="mission-timer">
                 <span class="label">EST. ARRIVAL:</span>
@@ -32,14 +33,14 @@
                 <div class="glass-vessel">
                     <div class="sand-bottom"></div>
                 </div>
-                <p class="status-tag">BIO-SYNTHESIS IN PROGRESS</p>
+                <p class="status-tag">BIO-SYNTHESIS ACTIVE</p>
             </div>
         </div>
 
         <footer class="bottom-hud">
             <div class="terminal-box">
                 <p class="analysis">INITIALIZING SCAN...</p>
-                <p class="mission-id">LOC: [SECTOR 7] // SOURCE: LONE STAR-1</p>
+                <div id="system-log"></div> <p class="mission-id">LOC: [SECTOR 7] // SOURCE: LONE STAR-1</p>
             </div>
             
             <nav class="buttons">
