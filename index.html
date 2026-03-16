@@ -11,9 +11,7 @@
 
     <div id="boot-screen">
         <div class="retina-scanner">
-            <div class="eye-target">
-                <div class="scan-line"></div>
-            </div>
+            <div class="eye-target"><div class="scan-line"></div></div>
             <p class="scan-status">AWAITING BIOMETRIC SCAN</p>
             <button id="auth-btn">AUTHORIZE MISSION LONE STAR-1</button>
         </div>
@@ -21,15 +19,19 @@
 
     <div class="pod-viewport">
         <div class="planet-layer"></div>
-        <div class="helmet-dash"></div> <div class="pod-frame"></div>
-        <canvas id="particle-canvas"></canvas>
-    </div>
+        <div class="helmet-dash"></div>
+        <div class="pod-frame"></div>
+        <canvas id="particle-canvas"></canvas> </div>
 
     <main class="hero-content" style="display: none;">
+        <div class="hud-header">
+            <span class="system-tag">SYSTEMS: <span class="blink">ONLINE</span></span>
+        </div>
+
         <nav class="lobby-menu">
-            <h2 class="menu-header">WELCOME, CADET</h2>
+            <h2 class="menu-header">MISSION PREP</h2>
             <div class="buttons">
-                <a href="#" class="btn">HEADQUARTERS</a>
+                <a href="#" class="btn active">HEADQUARTERS</a>
                 <a href="#" class="btn">ENLIST</a>
                 <a href="#" class="btn">MISSION LOG</a>
             </div>
@@ -37,7 +39,7 @@
 
         <aside class="data-feed">
             <div class="terminal-box">
-                <p class="analysis">SYSTEMS: ONLINE...</p>
+                <p class="analysis">INITIALIZING SCAN...</p>
                 <div id="system-log"></div>
             </div>
         </aside>
