@@ -1,81 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#000000">
-<meta name="description" content="Protein Planet – The protein revolution begins. Track the mission, explore the planet, and analyze the first extraterrestrial protein samples.">
-<title>Protein Planet</title>
-
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Planet | Mission Lone Star-1</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <div class="scanlines"></div> <section class="hero">
-        <div class="overlay"></div>
-        
-        <div class="hero-content">
-            <div class="hud-top-bar">
-                <div class="logo-section">
-                    <h2 class="logo-text">PROTEIN PLANET</h2>
-                    <span class="system-status"><span class="blink-dot"></span> SYSTEM: ONLINE</span>
-                </div>
-                
-                <div class="mission-timer">
-                    <span class="label">EST. ARRIVAL:</span>
-                    <div id="countdown">00:00:00:00</div>
-                </div>
+    <div class="pod-viewport">
+        <div class="space-bg"></div>
+        <div class="planet-layer"></div>
+        <div class="pod-frame"></div>
+        <div class="scanlines"></div>
+    </div>
+
+    <main class="hero-content">
+        <header class="hud-top-bar">
+            <div class="logo-section">
+                <h1 class="logo-text">PROTEIN PLANET</h1>
+                <span class="system-status"><span class="blink-dot"></span> SYSTEM: CRITICAL_STABILITY</span>
             </div>
-
-            <div class="center-stage">
-                <div class="hourglass-container">
-                    <div class="glass-vessel">
-                        <div class="sand-bottom"></div>
-                    </div>
-                    <p class="status-tag">STABILIZING SAMPLE</p>
-                </div>
+            <div class="mission-timer">
+                <span class="label">EST. ARRIVAL:</span>
+                <div id="countdown">00:00:00:00</div>
             </div>
+        </header>
 
-            <div class="bottom-section">
-                <div class="terminal-box">
-                    <p class="analysis">ANALYZING SAMPLE...</p>
-                    <p class="mission-id">SOURCE: [LONE STAR-1] // COORDINATES: 44.2N, 10.5W</p>
+        <div class="center-stage">
+            <div class="hourglass-container">
+                <div class="glass-vessel">
+                    <div class="sand-bottom"></div>
                 </div>
-                
-                <div class="buttons">
-                    <a href="headquarters.html" class="btn">HEADQUARTERS</a>
-                    <a href="enlist.html" class="btn">ENLIST</a>
-                    <a href="mission-log.html" class="btn">MISSION LOG</a>
-                </div>
-                
-                <div class="corner-data top-left">
-                    <p>EXT-TEMP: -142°C</p>
-                    <p>O2-LEVEL: 0% [CRITICAL]</p>
-                    <p>HULL-INTEGRITY: 14%</p>
-                <div class="corner-data bottom-right">
-                    <p>LAT: 44.0021</p>
-                    <p>LONG: 102.8831</p>
-                    <p>SIGNAL: ENCRYPTED</p>
-                </div>
-                    <div class="pod-viewport">
-                    <div class="space-bg"></div>
-    
-                    <div class="planet-layer"></div>
-
-                    <div class="pod-frame"></div>
-
-                    <section class="hero">
-        </section>
-</div>
-                </div>
+                <p class="status-tag">BIO-SYNTHESIS IN PROGRESS</p>
             </div>
         </div>
-    </section>
+
+        <footer class="bottom-hud">
+            <div class="terminal-box">
+                <p class="analysis">INITIALIZING SCAN...</p>
+                <p class="mission-id">LOC: [SECTOR 7] // SOURCE: LONE STAR-1</p>
+            </div>
+            
+            <nav class="buttons">
+                <a href="headquarters.html" class="btn">HEADQUARTERS</a>
+                <a href="enlist.html" class="btn">ENLIST</a>
+                <a href="mission-log.html" class="btn">MISSION LOG</a>
+            </nav>
+        </footer>
+
+        <div class="corner-data top-left-data">O2_LVL: 14% // TEMP: -140C</div>
+        <div class="corner-data bottom-right-data">LAT: 44.02 // LONG: 102.88</div>
+    </main>
+
     <script src="script.js"></script>
 </body>
-
 </html>
