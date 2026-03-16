@@ -44,16 +44,28 @@ body {
     z-index: 2;
 }
 
-/* HUD LAYOUT */
+/* THE BO3 LOBBY HUD */
 .hero-content {
-    position: relative;
-    z-index: 10; /* Above the planet */
+    display: grid;
+    grid-template-columns: 350px 1fr 350px; /* Left menu, empty center, right data */
+    padding: 60px;
     height: 100vh;
-    padding: 40px;
+}
+
+/* LEFT MENU */
+.lobby-menu {
+    grid-column: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    pointer-events: none; /* Mouse moves the planet */
+    justify-content: center;
+}
+
+.menu-header {
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #fff;
+    width: fit-content;
 }
 
 .hud-top-bar { 
@@ -78,22 +90,56 @@ body {
 }
 
 .btn {
-    background: rgba(255, 78, 0, 0.1);
-    border-left: 4px solid var(--bo3-orange);
-    color: #fff;
-    padding: 12px 30px;
-    text-decoration: none;
-    font-weight: 800;
-    letter-spacing: 2px;
-    clip-path: polygon(0 0, 95% 0, 100% 20%, 100% 100%, 5% 100%, 0 80%);
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-left: 0px solid var(--bo3-orange);
+    color: #ccc;
+    padding: 10px 20px;
+    margin: 4px 0;
+    text-align: left;
+    font-weight: 700;
     transition: 0.2s;
+    clip-path: none; /* Let's keep them clean rectangles like the BO3 menu */
+    text-transform: uppercase;
 }
 
-.btn:hover {
-    background: var(--bo3-orange);
-    color: #000;
-    box-shadow: var(--glow);
-    padding-left: 40px;
+.btn:hover, .btn.active {
+    background: linear-gradient(90deg, var(--bo3-orange) 0%, transparent 100%);
+    color: #fff;
+    border-left: 6px solid var(--bo3-orange);
+    padding-left: 30px;
+}
+
+.btn-icon {
+    border: 1px solid #fff;
+    border-radius: 50%;
+    padding: 2px 6px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/* RIGHT DATA FEED */
+.data-feed {
+    grid-column: 3;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    height: fit-content;
+    align-self: center;
+}
+
+/* BOTTOM FOOTER BAR (Mirroring BO3) */
+.hud-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    padding: 10px 60px;
+    gap: 30px;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* HOURGLASS / BIO-CHAMBER */
