@@ -230,6 +230,22 @@ body {
     40%, 60% { transform: translate3d(4px, 0, 0); }
 }
 
+/* Ensure the Boot Screen is the 'Gatekeeper' */
+#boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999; /* This must be the highest number */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all; /* Important: It captures the click */
+}
+
 /* 1. Add perspective to the parent container */
 .hero-content {
     perspective: 1200px; /* This defines how 'deep' the 3D space is */
@@ -237,6 +253,9 @@ body {
     grid-template-columns: 350px 1fr 350px;
     align-items: center;
     padding: 60px;
+    position: relative;
+    z-index: 10; 
+    opacity: 1; /* It's already there, just hidden by the boot screen */
 }
 
 /* 2. Tilt the Left Menu inward */
@@ -343,4 +362,24 @@ body {
 #auth-btn:hover {
     background: var(--bo3-orange);
     color: #000;
+}
+
+.scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--bo3-orange);
+    box-shadow: 0 0 15px var(--bo3-orange);
+    top: 0;
+    left: 0;
+    animation: scanMove 2s linear infinite;
+}
+
+@keyframes scanMove {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+.eye-target {
+    overflow: hidden; /* Keeps the scan line inside the circle */
 }
