@@ -34,15 +34,41 @@ body {
     box-shadow: 0 0 100px rgba(255, 78, 0, 0.2);
 }
 
-/* THE POD WINDOW MASK */
+/* THE HELMET INTERFACE */
 .pod-frame {
     position: absolute;
     inset: 0;
-    z-index: 5;
+    z-index: 8; /* Just below the buttons */
     pointer-events: none;
-    /* Create a heavy vignette that looks like a circular pod window */
-    background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.9) 80%);
-    box-shadow: inset 0 0 100px #000;
+    /* The "Helmet" curve - darkens the top and bottom significantly */
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.9) 100%);
+    border: 10px solid #1a1a1a; /* The physical rim of the helmet */
+}
+
+/* THE CRACKED GLASS (Corner Details) */
+.pod-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Use an image of cracked glass or a high-res texture */
+    background-image: url('https://www.transparenttextures.com/patterns/cracked-glass.png');
+    opacity: 0.15;
+    /* Mask it so it only shows in the corners */
+    -webkit-mask-image: radial-gradient(circle at 10% 10%, black 0%, transparent 30%),
+                        radial-gradient(circle at 90% 90%, black 0%, transparent 30%);
+    mask-image: radial-gradient(circle at 10% 10%, black 0%, transparent 30%),
+                radial-gradient(circle at 90% 90%, black 0%, transparent 30%);
+}
+
+/* HUD "BREATHING" ANIMATION */
+/* Makes the whole UI pulse slightly like the astronaut is breathing */
+.hero-content {
+    animation: visorPulse 6s ease-in-out infinite;
+}
+
+@keyframes visorPulse {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.005); filter: brightness(1.1); }
 }
 
 /* Add some "Interior dashboard" light leaks */
@@ -55,14 +81,6 @@ body {
     height: 40%;
     background: radial-gradient(ellipse at bottom, rgba(255, 78, 0, 0.2), transparent 70%);
     transform: translateX(-50%);
-}
-
-/* THE BO3 LOBBY HUD */
-.hero-content {
-    display: grid;
-    grid-template-columns: 350px 1fr 350px; /* Left menu, empty center, right data */
-    padding: 60px;
-    height: 100vh;
 }
 
 /* LEFT MENU */
