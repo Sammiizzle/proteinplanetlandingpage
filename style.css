@@ -18,7 +18,7 @@ body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-seri
     grid-template-columns: 400px 1fr 350px; /* LEFT - MIDDLE - RIGHT */
     grid-template-rows: 100px 1fr 100px;
     padding: 40px;
-    perspective: 1000px; /* Crucial for 3D tilt */
+    perspective: 1200px; /* Crucial for 3D tilt */
 }
 
 /* TOP RIGHT DATA */
@@ -31,14 +31,12 @@ body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-seri
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
     /* THE WARP: 
        rotateY tilts it inward toward the planet.
        skewY makes it look like it's following the roundness of the helmet. */
     transform: rotateY(25deg) rotateX(2deg) skewY(-2deg);
     transform-origin: left center;
     transform-style: preserve-3d;
-    
     /* Adding a subtle blue/orange 'glow' to the edge of the glass */
     filter: drop-shadow(10px 0px 15px rgba(255, 78, 0, 0.2));
 }
@@ -67,9 +65,8 @@ body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-seri
 
 .btn:hover {
     color: #fff;
-    background: rgba(255, 78, 0, 0.2);
-    /* The button 'pops out' toward the user's face on hover */
-    transform: translateZ(40px) translateX(10px);
+    background: linear-gradient(90deg, var(--bo3-orange), transparent);    /* The button 'pops out' toward the user's face on hover */
+    transform: translateZ(50px) translateX(10px);
     box-shadow: -10px 0 20px rgba(255, 78, 0, 0.4);
     border-left-width: 10px;
 }
@@ -94,8 +91,11 @@ body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-seri
     z-index: 1;
 }
 .pod-frame {
-    position: fixed; inset: 0; z-index: 50; pointer-events: none;
-    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.85) 80%, #000 100%);
+    position: fixed; 
+    inset: 0; 
+    z-index: 50; 
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.9) 85%, #000 100%);
     /* ... your existing code ... */
     /* This adds a 'sheen' or reflection of the pod interior onto the visor */
     background-image: linear-gradient(
@@ -109,3 +109,35 @@ body { background: #000; color: #fff; font-family: 'Barlow Condensed', sans-seri
 #particle-canvas { position: fixed; inset: 0; z-index: 60; pointer-events: none; }
 .blink { animation: blinker 1.5s linear infinite; }
 @keyframes blinker { 50% { opacity: 0; } }
+
+/* The 'Dash' Reflection */
+.helmet-dash {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25vh;
+    background: linear-gradient(to top, rgba(255, 78, 0, 0.15), transparent);
+    filter: blur(50px);
+    z-index: 6;
+}
+
+.pod-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/glass-knobs.png'); /* Subtle grime */
+    opacity: 0.2;
+}
+
+/* Visual Cracks */
+.pod-frame::after {
+    content: "L"; /* We use a character or an image for the crack */
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.1);
+    filter: blur(1px);
+    transform: rotate(-15deg);
+    /* In a real build, use a PNG of cracked glass here */
+}
