@@ -135,9 +135,12 @@ h1 {
 
 /* THE GLASS SPECIMEN JAR */
 .hourglass-container {
-    padding: 20px;
-    border-left: 2px solid var(--hud-cyan);
-    background: linear-gradient(90deg, rgba(0, 242, 255, 0.1), transparent);
+    border: 2px solid #333;
+    background: #0a0a0a;
+    box-shadow: 
+        inset 0 0 15px rgba(255, 78, 0, 0.2), 
+        5px 5px 0px #111; /* Makes it look like a bolted-on piece of hardware */
+    padding: 10px;
 }
 
 .glass-vessel {
