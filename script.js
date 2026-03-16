@@ -20,3 +20,7 @@ authBtn.addEventListener('click', () => {
 });
 
 // (Keep your particle and terminal code below this)
+// Inside your Particle class draw function
+ctx.fillStyle = `rgba(255, 160, 50, ${this.opacity})`; // Brighter amber
+ctx.shadowBlur = 5;
+ctx.shadowColor = "orange";
