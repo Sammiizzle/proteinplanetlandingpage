@@ -59,17 +59,16 @@ body {
 /* HUD LAYOUT */
 /* Ensure the HUD is at the very front */
 .hero-content {
-    position: absolute; /* Changed from relative to absolute */
+    position: absolute;
     inset: 0;
-    z-index: 100; /* High number to beat the planet */
+    z-index: 100; /* Set to 100 and kept it there */
     display: grid;
-    grid-template-columns: 4000px 1fr; /* Left menu, then space */
-    padding: 80px;
+    grid-template-columns: 450px 1fr 350px; /* Adjusted columns for balance */
+    padding: 60px;
     height: 100vh;
-    pointer-events: none; /* Allows mouse to pass through to the planet */
-    perspective: 1000px; /* This enables 3D */
+    pointer-events: none; 
+    perspective: 1200px; /* Increased perspective for better tilt */
     align-items: center;
-    z-index: 10;
 }
 
 /* Fix the "Orange Bubble" to look like a Planet */
@@ -116,9 +115,14 @@ body {
 }
 
 .lobby-menu {
+    grid-column: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* THIS IS THE TILT */
+    transform: rotateY(25deg) translateZ(50px);
+    transform-style: preserve-3d;
+    pointer-events: auto; /* IMPORTANT: allows clicking */
 }
 
 .btn:hover, .btn.active {
@@ -174,18 +178,17 @@ body {
 }
 
 /* THE PLANET (Moving away from the "Orange Bubble") */
+/* Ensure the planet is centered and behind everything */
 .planet-layer {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) translateZ(-200px);
     width: 80vh;
     height: 80vh;
-    transform: translate(-50%, -50%) translateZ(-100px); /* Pushes it back in space */
     background: radial-gradient(circle at 30% 30%, #ff4e00 0%, #300 50%, #000 100%);
     border-radius: 50%;
-    box-shadow: 
-        0 0 60px rgba(255, 78, 0, 0.4),
-        inset -30px -30px 100px #000;
+    box-shadow: 0 0 100px rgba(255, 78, 0, 0.4), inset -30px -30px 80px #000;
     z-index: 1;
 }
 
