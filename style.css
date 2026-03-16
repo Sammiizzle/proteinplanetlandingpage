@@ -33,6 +33,7 @@ body {
     position: relative;
     margin-bottom: 20px;
     overflow: hidden;
+    align-items: center;
 }
 
 .scan-line {
