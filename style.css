@@ -186,3 +186,11 @@ body {
         inset -30px -30px 100px #000;
     z-index: 1;
 }
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6; /* Higher than the planet, lower than the HUD */
+    pointer-events: none;
+}
