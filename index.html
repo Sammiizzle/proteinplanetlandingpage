@@ -5,48 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Protein Planet | Mission Lone Star-1</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="boot-screen">
-    <div class="retina-scanner">
-        <div class="scan-line"></div>
-        <div class="eye-target"></div>
-        <p class="scan-status">AWAITING BIOMETRIC SCAN</p>
-        <button id="auth-btn">AUTHORIZE MISSION LONE STAR-1</button>
+        <div class="retina-scanner">
+            <div class="eye-target">
+                <div class="scan-line"></div>
+            </div>
+            <p class="scan-status">AWAITING BIOMETRIC SCAN</p>
+            <button id="auth-btn">AUTHORIZE MISSION LONE STAR-1</button>
+        </div>
     </div>
-</div>
+
     <div class="pod-viewport">
         <div class="planet-layer"></div>
         <div class="pod-frame"></div>
         <canvas id="particle-canvas"></canvas>
-        <div class="scanlines"></div>
-        <div class="dash-glow"></div>
     </div>
 
-<main class="hero-content">
-    <nav class="lobby-menu">
-        <h2 class="menu-header">PROTEIN PLANET</h2>
-        <div class="buttons">
-            <a href="headquarters.html" class="btn active">HEADQUARTERS</a>
-            <a href="enlist.html" class="btn">ENLIST</a>
-            <a href="mission-log.html" class="btn">MISSION LOG</a>
-            <a href="#" class="btn locked">BLACK MARKET (LOCKED)</a>
-        </div>
-    </nav>
+    <main class="hero-content" style="display: none;">
+        <nav class="lobby-menu">
+            <h2 class="menu-header">MISSION PREP</h2>
+            <div class="buttons">
+                <a href="#" class="btn active">HEADQUARTERS</a>
+                <a href="#" class="btn">ENLIST</a>
+                <a href="#" class="btn">MISSION LOG</a>
+            </div>
+        </nav>
 
-    <aside class="data-feed">
-        <div class="sample-stats">
-            <div class="stat-row"><span>SAMPLE ID:</span> <span>PT-99</span></div>
-            <div class="stat-row"><span>STABILITY:</span> <span class="amber">72%</span></div>
-            <div class="stat-row"><span>ORIGIN: UNKNOWN, SOURCE: ANOMALY:</span> <span class="red">CRITICAL</span></div>
-        </div>
-        <div class="terminal-box">
-            <p class="analysis">INITIALIZING SCAN...</p>
-        </div>
-    </aside>
-</main>
+        <aside class="data-feed">
+            <div class="terminal-box">
+                <p class="analysis">SYSTEMS ONLINE...</p>
+                <div id="system-log"></div>
+            </div>
+        </aside>
+
+        <footer class="hud-footer">
+            <div id="countdown">00:00:00:00</div>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
