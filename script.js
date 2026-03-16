@@ -3,6 +3,7 @@ const bootScreen = document.getElementById('boot-screen');
 const heroContent = document.querySelector('.hero-content');
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
+const countdownTarget = new Date("May 1, 2026 00:00:00").getTime();
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -33,3 +34,16 @@ authBtn.addEventListener('click', () => {
 ctx.fillStyle = `rgba(255, 160, 50, ${this.opacity})`; // Brighter amber
 ctx.shadowBlur = 5;
 ctx.shadowColor = "orange";
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = countdownTarget - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML = 
+        `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}, 1000);
