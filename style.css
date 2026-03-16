@@ -216,3 +216,41 @@ body {
     30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
     40%, 60% { transform: translate3d(4px, 0, 0); }
 }
+
+/* 1. Add perspective to the parent container */
+.hero-content {
+    perspective: 1200px; /* This defines how 'deep' the 3D space is */
+    display: grid;
+    grid-template-columns: 350px 1fr 350px;
+    align-items: center;
+    padding: 60px;
+}
+
+/* 2. Tilt the Left Menu inward */
+.lobby-menu {
+    transform: rotateY(25deg) translateZ(50px); /* Tilts the right edge of the menu toward the viewer */
+    transform-style: preserve-3d;
+    filter: drop-shadow(0 0 10px rgba(255, 78, 0, 0.3));
+}
+
+/* 3. Tilt the Right Data Feed inward (Opposite direction) */
+.data-feed {
+    transform: rotateY(-25deg) translateZ(50px); /* Tilts the left edge toward the viewer */
+    transform-style: preserve-3d;
+}
+
+/* 4. Update the Buttons to look like 'floating' glass plates */
+.btn {
+    background: linear-gradient(90deg, rgba(255, 78, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid rgba(255, 78, 0, 0.3);
+    margin: 8px 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn:hover {
+    transform: translateZ(30px); /* Pops out toward the user on hover */
+    background: var(--bo3-orange);
+    box-shadow: 0 0 30px rgba(255, 78, 0, 0.6);
+}
