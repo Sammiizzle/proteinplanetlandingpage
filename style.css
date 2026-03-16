@@ -1,13 +1,8 @@
 /* 1. Brand Variables */
 :root {
-    --glow-color: #bc13fe; 
-    --accent-color: #ff00de; 
-    --text-cyan: #7efcff;    
-    --glass-bg: rgba(31, 8, 59, 0.4);
-    --hud-cyan: #00f2ff;
-    --hud-bg: rgba(0, 20, 30, 0.8);
-    --glow: 0 0 15px rgba(0, 242, 255, 0.6);
-    --font-main: 'Orbitron', sans-serif;
+  --bo3-orange: #ff4e00;
+  --bo3-amber: #ffae00;
+  --bo3-glow: 0 0 20px rgba(255, 78, 0, 0.5);
 }
 
 /* HUD TOP BAR */
@@ -66,6 +61,16 @@ body::before {
     position: relative;
     background: url("assets/planet.jpg") center/cover no-repeat;
     z-index: 1;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png"); /* Grain texture */
+    opacity: 0.15;
+    z-index: 2;
+    pointer-events: none;
 }
 
 /* Moving Space Dust */
@@ -184,36 +189,37 @@ h1 {
 
 .buttons { display: flex; justify-content: center; gap: 20px; }
 
-/* Container for the buttons */
-.buttons { 
-    display: flex; 
-    justify-content: center; 
-    gap: 25px; 
-    margin-top: 20px;
-    z-index: 100;
+.buttons {
+    display: flex;
+    flex-direction: column; /* Stacked like a game menu */
+    align-items: flex-start;
+    gap: 10px;
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-/* THE "HARD-ASS" BUTTON */
 .btn {
-    background: rgba(0, 242, 255, 0.1);
-    border: 1px solid var(--hud-cyan);
-    color: var(--hud-cyan);
-    padding: 12px 40px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 4px;
+    background: linear-gradient(90deg, rgba(255, 78, 0, 0.15) 0%, transparent 100%);
+    border: none;
+    border-left: 5px solid var(--bo3-orange); /* The "Active" indicator */
+    color: #fff;
+    padding: 15px 50px 15px 20px;
+    font-family: 'Barlow Condensed', sans-serif; /* Tall, military font */
+    font-weight: 800;
     text-transform: uppercase;
-    /* This creates that BO3 angular look */
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-    transition: all 0.3s ease;
+    letter-spacing: 3px;
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%); /* Slanted edge */
+    transition: 0.2s all;
+    border-bottom: 1px solid rgba(255, 78, 0, 0.1);
 }
 
 .btn:hover {
-    background: var(--hud-cyan);
+    background: var(--bo3-orange);
     color: #000;
-    box-shadow: var(--glow);
-    transform: skewX(-5deg);
+    box-shadow: var(--bo3-glow);
+    padding-left: 35px; /* Slides out slightly on hover */
 }
 
 /* The "Shine" Sweep Effect */
