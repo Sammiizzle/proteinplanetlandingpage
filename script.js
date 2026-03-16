@@ -1,6 +1,15 @@
 const authBtn = document.getElementById('auth-btn');
 const bootScreen = document.getElementById('boot-screen');
 const heroContent = document.querySelector('.hero-content');
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initialize size immediately
 
 authBtn.addEventListener('click', () => {
     // Visual feedback
