@@ -247,6 +247,9 @@ body {
     position: relative;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 
+        2px 0px 1px rgba(255,0,0,0.5), 
+       -2px 0px 1px rgba(0,255,255,0.5);
 }
 
 .btn:hover {
@@ -254,3 +257,10 @@ body {
     background: var(--bo3-orange);
     box-shadow: 0 0 30px rgba(255, 78, 0, 0.6);
 }
+
+/* This makes the menu stack 'arch' slightly like it's on a sphere */
+.buttons .btn:nth-child(1) { transform: translateX(20px) rotateY(25deg); }
+.buttons .btn:nth-child(2) { transform: translateX(5px) rotateY(25deg); }
+.buttons .btn:nth-child(3) { transform: translateX(0px) rotateY(25deg); }
+.buttons .btn:nth-child(4) { transform: translateX(10px) rotateY(25deg); }
+
