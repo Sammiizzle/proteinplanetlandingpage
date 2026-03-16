@@ -15,51 +15,44 @@
 </head>
 
 <body>
-
-    <section class="hero">
+    <div class="scanlines"></div> <section class="hero">
         <div class="overlay"></div>
         
-    <div class="hero-content">
-        <div class="hud-top-bar">
-            
-    <div class="logo-section">
-        <h2 class="logo-text">PROTEIN PLANET</h2>
-        <span class="system-status">SYSTEM: ONLINE</span>
-    </div>
-            
-    <div class="mission-timer">
-        <span class="label">EST. ARRIVAL:</span>
-        
-        <div id="countdown">00:00:45:12</div>
-    </div>
+        <div class="hero-content">
+            <div class="hud-top-bar">
+                <div class="logo-section">
+                    <h2 class="logo-text">PROTEIN PLANET</h2>
+                    <span class="system-status"><span class="blink-dot"></span> SYSTEM: ONLINE</span>
+                </div>
+                <div class="mission-timer">
+                    <span class="label">EST. ARRIVAL:</span>
+                    <div id="countdown">00:00:00:00</div>
+                </div>
+            </div>
 
-    <div class="hourglass-container">
-    <div class="glass-vessel">
-        <div class="sand-top"></div>
-        <div class="sand-bottom"></div>
-    </div>
-    <p class="status-tag">STABILIZING</p>
-    </div>
+            <div class="center-stage">
+                <div class="hourglass-container">
+                    <div class="glass-vessel">
+                        <div class="sand-bottom"></div>
+                    </div>
+                    <p class="status-tag">STABILIZING SAMPLE</p>
+                </div>
+            </div>
 
-<div class="bottom-section">
-    <div class="terminal-header">
-        <span class="dot"></span> SECURE CONNECTION: ESTABLISHED
-                <p class="analysis">ANALYZING SAMPLE...</p>
-            <div class="center-col">
-        <div id="countdown"></div>
-    </div>
-</div>
-    <p class="mission-id">SOURCE: [LONE STAR-1]</p>
-    
-    <div class="buttons">
-        <a href="headquarters.html" class="btn"><span class="btn-glitch"></span>HEADQUARTERS</a>
-        <a href="enlist.html" class="btn">ENLIST</a>
-        <a href="mission-log.html" class="btn">MISSION LOG</a>
-    </div>
-</div>
-</div>
+            <div class="bottom-section">
+                <div class="terminal-box">
+                    <p class="analysis">ANALYZING SAMPLE...</p>
+                    <p class="mission-id">SOURCE: [LONE STAR-1] // COORDINATES: 44.2N, 10.5W</p>
+                </div>
+                
+                <div class="buttons">
+                    <a href="headquarters.html" class="btn">HEADQUARTERS</a>
+                    <a href="enlist.html" class="btn">ENLIST</a>
+                    <a href="mission-log.html" class="btn">MISSION LOG</a>
+                </div>
+            </div>
+        </div>
     </section>
-
     <script src="script.js"></script>
 </body>
 
