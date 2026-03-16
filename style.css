@@ -1,11 +1,10 @@
 :root {
     --bo3-orange: #ff4e00;
     --bo3-amber: #ffae00;
-    --hud-bg: rgba(5, 5, 5, 0.9);
     --glow: 0 0 15px rgba(255, 78, 0, 0.6);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     background: #000;
@@ -15,77 +14,117 @@ body {
     height: 100vh;
 }
 
-/* 1. IMMERSIVE BACKGROUND */
-.pod-viewport { position: fixed; inset: 0; z-index: -1; }
-.planet-layer {
-    position: absolute; top: 50%; left: 50%;
-    width: 110%; height: 110%;
-    background: url('assets/planet.jpg') center/contain no-repeat;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-.pod-frame {
-    position: absolute; inset: 0;
-    border: 30px solid transparent;
-    border-image: linear-gradient(to bottom, #111, #000) 1;
-    box-shadow: inset 0 0 150px #000;
-    z-index: 5;
-    background: url('https://www.transparenttextures.com/patterns/glass-knobs.png'); /* Lens Scratches */
-    opacity: 0.2;
+/* BACKGROUND LAYERING */
+.pod-viewport {
+    position: fixed;
+    inset: 0;
+    z-index: 1; /* Lowest layer */
 }
 
-/* 2. HUD LAYOUT */
+.planet-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--bo3-orange) 0%, transparent 70%), url('assets/planet.jpg');
+    background-size: cover;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 100px rgba(255, 78, 0, 0.2);
+}
+
+.pod-frame {
+    position: absolute;
+    inset: 0;
+    border: 20px solid #111;
+    box-shadow: inset 0 0 200px #000;
+    background: url('https://www.transparenttextures.com/patterns/glass-knobs.png');
+    opacity: 0.1;
+    z-index: 2;
+}
+
+/* HUD LAYOUT */
 .hero-content {
+    position: relative;
+    z-index: 10; /* Above the planet */
     height: 100vh;
     padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    animation: powerFlicker 10s infinite;
+    pointer-events: none; /* Mouse moves the planet */
 }
 
-.hud-top-bar { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 78, 0, 0.3); padding-bottom: 10px; }
+.hud-top-bar { 
+    display: flex; 
+    justify-content: space-between; 
+    border-bottom: 1px solid rgba(255, 78, 0, 0.2);
+    padding-bottom: 15px;
+}
 
-/* 3. TACTICAL BUTTONS */
-.buttons { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; }
+.bottom-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* BUTTONS */
+.buttons { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    pointer-events: auto; /* Make clickable */
+}
+
 .btn {
     background: rgba(255, 78, 0, 0.1);
     border-left: 4px solid var(--bo3-orange);
     color: #fff;
-    padding: 12px 40px;
+    padding: 12px 30px;
     text-decoration: none;
-    letter-spacing: 3px;
     font-weight: 800;
-    clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
-    transition: 0.3s;
+    letter-spacing: 2px;
+    clip-path: polygon(0 0, 95% 0, 100% 20%, 100% 100%, 5% 100%, 0 80%);
+    transition: 0.2s;
 }
-.btn:hover { background: var(--bo3-orange); color: #000; box-shadow: var(--bo3-glow); padding-left: 50px; }
 
-/* 4. BIO-CHAMBER (HOURGLASS) */
+.btn:hover {
+    background: var(--bo3-orange);
+    color: #000;
+    box-shadow: var(--glow);
+    padding-left: 40px;
+}
+
+/* HOURGLASS / BIO-CHAMBER */
+.center-stage { display: flex; justify-content: center; }
 .glass-vessel {
-    width: 70px; height: 150px;
-    border: 1px solid rgba(255, 78, 0, 0.5);
-    background: rgba(0,0,0,0.8);
-    position: relative; overflow: hidden;
+    width: 60px; height: 140px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0,0,0,0.6);
+    position: relative;
 }
 .sand-bottom {
     position: absolute; bottom: 0; width: 100%;
     background: var(--bo3-orange);
-    box-shadow: 0 0 20px var(--bo3-orange);
+    box-shadow: 0 0 15px var(--bo3-orange);
+    height: 0%; /* Managed by JS */
 }
 
-/* 5. EFFECTS */
+/* TEXT DETAILS */
+.corner-data {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--bo3-orange);
+}
+.top-left-data { top: 15px; left: 15px; }
+.bottom-right-data { bottom: 15px; right: 15px; }
+
 .scanlines {
     position: fixed; inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%);
-    background-size: 100% 4px; z-index: 100; pointer-events: none;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 100;
 }
-
-@keyframes powerFlicker {
-    0%, 95%, 100% { opacity: 1; }
-    96% { opacity: 0.7; filter: contrast(1.5); }
-    98% { opacity: 0.9; }
-}
-
-.blink-dot { height: 8px; width: 8px; background: var(--bo3-orange); border-radius: 50%; display: inline-block; animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
