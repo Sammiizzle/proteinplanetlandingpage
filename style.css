@@ -21,6 +21,19 @@ body {
     z-index: 1; /* Lowest layer */
 }
 
+.pod-viewport::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9; /* Sits right in front of the planet but behind the buttons */
+    /* This creates a 'Letterbox' or 'Visor' shape */
+    box-shadow: 
+        inset 0 0 0 40px #0a0a0a,      /* The thick helmet frame */
+        inset 0 0 100px 50px #000;    /* The deep shadows of the interior */
+    border-radius: 15% / 10%;         /* Curves the corners like a visor */
+    pointer-events: none;
+}
+
 .planet-layer {
     position: absolute;
     top: 50%;
@@ -264,3 +277,21 @@ body {
 .buttons .btn:nth-child(3) { transform: translateX(0px) rotateY(25deg); }
 .buttons .btn:nth-child(4) { transform: translateX(10px) rotateY(25deg); }
 
+.dash-glow {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    width: 60%;
+    height: 30%;
+    background: radial-gradient(ellipse at bottom, var(--bo3-orange), transparent 70%);
+    opacity: 0.3;
+    filter: blur(40px);
+    transform: translateX(-50%);
+    z-index: 7;
+    animation: engineHum 4s ease-in-out infinite;
+}
+
+@keyframes engineHum {
+    0%, 100% { opacity: 0.2; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.4; transform: translateX(-50%) scale(1.05); }
+}
