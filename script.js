@@ -121,3 +121,33 @@ initParticles();
 animateParticles();
 
 };
+// --- THE MISSION LAUNCH SEQUENCE ---
+const authBtn = document.getElementById('auth-btn');
+const bootScreen = document.getElementById('boot-screen');
+const mainHUD = document.querySelector('.hero-content'); // This is your main site
+
+authBtn.addEventListener('click', () => {
+    // 1. Trigger the "System Online" Audio
+    if (typeof triggerAtmosphere === "function") {
+        triggerAtmosphere(); 
+    }
+    
+    // 2. Play a "Success" sound or visual glitch
+    authBtn.innerText = "IDENTITY VERIFIED";
+    authBtn.style.borderColor = "#00ff00"; // Brief green flash for success
+    authBtn.style.color = "#00ff00";
+
+    // 3. Slide the curtain (The Fade Out)
+    setTimeout(() => {
+        bootScreen.style.transition = "all 1.5s cubic-bezier(0.19, 1, 0.22, 1)";
+        bootScreen.style.opacity = '0';
+        bootScreen.style.filter = "blur(20px)"; // Adds that high-end lens effect
+        
+        // 4. Reveal the HUD
+        setTimeout(() => {
+            bootScreen.style.display = 'none';
+            // Start the main HUD animations
+            glitchText(document.querySelector('.analysis'), "SYSTEMS NOMINAL... WELCOME COMMANDER.");
+        }, 1500);
+    }, 800);
+});
