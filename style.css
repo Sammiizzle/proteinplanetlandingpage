@@ -1,7 +1,5 @@
 :root {
     --bo3-orange: #ff4e00;
-    --bo3-amber: #ffae00;
-    --glow: 0 0 15px rgba(255, 78, 0, 0.6);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -10,358 +8,31 @@ body {
     background: #000;
     color: #fff;
     font-family: 'Barlow Condensed', sans-serif;
-    overflow: hidden;
     height: 100vh;
-}
-
-/* BACKGROUND LAYERING */
-.pod-viewport {
-    position: fixed;
-    inset: 0;
-    z-index: 1; /* Lowest layer */
-}
-
-.pod-viewport::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 9; /* Sits right in front of the planet but behind the buttons */
-    /* This creates a 'Letterbox' or 'Visor' shape */
-    box-shadow: 
-        inset 0 0 0 40px #0a0a0a,      /* The thick helmet frame */
-        inset 0 0 100px 50px #000;    /* The deep shadows of the interior */
-    border-radius: 15% / 10%;         /* Curves the corners like a visor */
-    pointer-events: none;
-}
-
-.planet-layer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, var(--bo3-orange) 0%, transparent 70%), url('assets/planet.jpg');
-    background-size: cover;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 100px rgba(255, 78, 0, 0.2);
-}
-
-/* THE HELMET INTERFACE */
-.pod-frame {
-    position: absolute;
-    inset: 0;
-    z-index: 8; /* Just below the buttons */
-    pointer-events: none;
-    /* The "Helmet" curve - darkens the top and bottom significantly */
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.9) 100%);
-    border: 10px solid #1a1a1a; /* The physical rim of the helmet */
-}
-
-/* THE CRACKED GLASS (Corner Details) */
-.pod-frame::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* Use an image of cracked glass or a high-res texture */
-    background-image: url('https://www.transparenttextures.com/patterns/cracked-glass.png');
-    opacity: 0.15;
-    /* Mask it so it only shows in the corners */
-    -webkit-mask-image: radial-gradient(circle at 10% 10%, black 0%, transparent 30%),
-                        radial-gradient(circle at 90% 90%, black 0%, transparent 30%);
-    mask-image: radial-gradient(circle at 10% 10%, black 0%, transparent 30%),
-                radial-gradient(circle at 90% 90%, black 0%, transparent 30%);
-}
-
-/* HUD "BREATHING" ANIMATION */
-/* Makes the whole UI pulse slightly like the astronaut is breathing */
-.hero-content {
-    animation: visorPulse 6s ease-in-out infinite;
-}
-
-@keyframes visorPulse {
-    0%, 100% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.005); filter: brightness(1.1); }
-}
-
-/* Add some "Interior dashboard" light leaks */
-.pod-frame::after {
-    content: "";
-    position: absolute;
-    bottom: -10%;
-    left: 50%;
-    width: 80%;
-    height: 40%;
-    background: radial-gradient(ellipse at bottom, rgba(255, 78, 0, 0.2), transparent 70%);
-    transform: translateX(-50%);
-}
-
-/* LEFT MENU */
-.lobby-menu {
-    grid-column: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.menu-header {
-    font-size: 2.5rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #fff;
-    width: fit-content;
-}
-
-.hud-top-bar { 
-    display: flex; 
-    justify-content: space-between; 
-    border-bottom: 1px solid rgba(255, 78, 0, 0.2);
-    padding-bottom: 15px;
-}
-
-.bottom-hud {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-/* BUTTONS */
-.buttons { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 10px; 
-    pointer-events: auto; /* Make clickable */
-}
-
-.btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    border-left: 0px solid var(--bo3-orange);
-    color: #ccc;
-    padding: 10px 20px;
-    margin: 4px 0;
-    text-align: left;
-    font-weight: 700;
-    transition: 0.2s;
-    clip-path: none; /* Let's keep them clean rectangles like the BO3 menu */
-    text-transform: uppercase;
-}
-
-.btn:hover, .btn.active {
-    background: linear-gradient(90deg, var(--bo3-orange) 0%, transparent 100%);
-    color: #fff;
-    border-left: 6px solid var(--bo3-orange);
-    padding-left: 30px;
-}
-
-.btn-icon {
-    border: 1px solid #fff;
-    border-radius: 50%;
-    padding: 2px 6px;
-    margin-right: 5px;
-    font-weight: bold;
-}
-
-/* RIGHT DATA FEED */
-.data-feed {
-    grid-column: 3;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    height: fit-content;
-    align-self: center;
-}
-
-/* BOTTOM FOOTER BAR (Mirroring BO3) */
-.hud-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    padding: 10px 60px;
-    gap: 30px;
-    font-size: 0.8rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* HOURGLASS / BIO-CHAMBER */
-.center-stage { display: flex; justify-content: center; }
-.glass-vessel {
-    width: 60px; height: 140px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(0,0,0,0.6);
-    position: relative;
-}
-.sand-bottom {
-    position: absolute; bottom: 0; width: 100%;
-    background: var(--bo3-orange);
-    box-shadow: 0 0 15px var(--bo3-orange);
-    height: 0%; /* Managed by JS */
-}
-
-/* TEXT DETAILS */
-.corner-data {
-    position: absolute;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--bo3-orange);
-}
-.top-left-data { top: 15px; left: 15px; }
-.bottom-right-data { bottom: 15px; right: 15px; }
-
-.scanlines {
-    position: fixed; inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-    background-size: 100% 4px;
-    pointer-events: none;
-    z-index: 100;
-}
-
-.screen-shake {
-    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-}
-
-@keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
-}
-
-/* Ensure the Boot Screen is the 'Gatekeeper' */
-#boot-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 100vw;
-    height: 100vh;
-    background: #000;
-    z-index: 9999; /* This must be the highest number */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    pointer-events: all; /* Important: It captures the click */
-}
-
-/* 1. Add perspective to the parent container */
-.hero-content {
-    perspective: 1200px; /* This defines how 'deep' the 3D space is */
-    display: grid;
-    grid-template-columns: 350px 1fr 350px;
-    align-items: center;
-    padding: 60px;
-    position: relative;
-    z-index: 10; 
-    opacity: 1; /* It's already there, just hidden by the boot screen */
-}
-
-/* 2. Tilt the Left Menu inward */
-.lobby-menu {
-    transform: rotateY(25deg) translateZ(50px); /* Tilts the right edge of the menu toward the viewer */
-    transform-style: preserve-3d;
-    filter: drop-shadow(0 0 10px rgba(255, 78, 0, 0.3));
-}
-
-/* 3. Tilt the Right Data Feed inward (Opposite direction) */
-.data-feed {
-    transform: rotateY(-25deg) translateZ(50px); /* Tilts the left edge toward the viewer */
-    transform-style: preserve-3d;
-}
-
-/* 4. Update the Buttons to look like 'floating' glass plates */
-.btn {
-    background: linear-gradient(90deg, rgba(255, 78, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
-    border: 1px solid rgba(255, 78, 0, 0.3);
-    margin: 8px 0;
-    position: relative;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    text-shadow: 
-        2px 0px 1px rgba(255,0,0,0.5), 
-       -2px 0px 1px rgba(0,255,255,0.5);
 }
 
-.btn:hover {
-    transform: translateZ(30px); /* Pops out toward the user on hover */
-    background: var(--bo3-orange);
-    box-shadow: 0 0 30px rgba(255, 78, 0, 0.6);
-}
-
-/* This makes the menu stack 'arch' slightly like it's on a sphere */
-.buttons .btn:nth-child(1) { transform: translateX(20px) rotateY(25deg); }
-.buttons .btn:nth-child(2) { transform: translateX(5px) rotateY(25deg); }
-.buttons .btn:nth-child(3) { transform: translateX(0px) rotateY(25deg); }
-.buttons .btn:nth-child(4) { transform: translateX(10px) rotateY(25deg); }
-
-.dash-glow {
-    position: absolute;
-    bottom: -10%;
-    left: 50%;
-    width: 60%;
-    height: 30%;
-    background: radial-gradient(ellipse at bottom, var(--bo3-orange), transparent 70%);
-    opacity: 0.3;
-    filter: blur(40px);
-    transform: translateX(-50%);
-    z-index: 7;
-    animation: engineHum 4s ease-in-out infinite;
-}
-
-@keyframes engineHum {
-    0%, 100% { opacity: 0.2; transform: translateX(-50%) scale(1); }
-    50% { opacity: 0.4; transform: translateX(-50%) scale(1.05); }
-}
-
-#particle-canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 7; /* Sits behind the HUD but in front of the planet */
-    pointer-events: none;
-    opacity: 0.6;
-}
+/* BOOT SCREEN FIX */
 #boot-screen {
     position: fixed;
     inset: 0;
     background: #000;
-    z-index: 9999; /* Over everything */
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    transition: opacity 1s ease-out;
-}
-
-.retina-scanner {
-    text-align: center;
-    color: var(--bo3-orange);
+    flex-direction: column;
 }
 
 .eye-target {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border: 2px solid var(--bo3-orange);
     border-radius: 50%;
-    margin-bottom: 20px;
     position: relative;
-    box-shadow: 0 0 20px rgba(255, 78, 0, 0.2);
-}
-
-#auth-btn {
-    background: transparent;
-    border: 1px solid var(--bo3-orange);
-    color: var(--bo3-orange);
-    padding: 10px 20px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-#auth-btn:hover {
-    background: var(--bo3-orange);
-    color: #000;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .scan-line {
@@ -369,17 +40,49 @@ body {
     width: 100%;
     height: 2px;
     background: var(--bo3-orange);
-    box-shadow: 0 0 15px var(--bo3-orange);
-    top: 0;
-    left: 0;
-    animation: scanMove 2s linear infinite;
+    box-shadow: 0 0 10px var(--bo3-orange);
+    animation: scan 2s linear infinite;
 }
 
-@keyframes scanMove {
-    0% { top: 0; }
-    100% { top: 100%; }
+@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+#auth-btn {
+    background: transparent;
+    border: 1px solid var(--bo3-orange);
+    color: var(--bo3-orange);
+    padding: 10px 30px;
+    font-family: 'JetBrains Mono', monospace;
+    cursor: pointer;
 }
 
-.eye-target {
-    overflow: hidden; /* Keeps the scan line inside the circle */
+/* HUD LAYOUT */
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 100px;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+.planet-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--bo3-orange) 0%, #000 80%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.btn {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    border-left: 4px solid var(--bo3-orange);
+    background: rgba(255, 78, 0, 0.1);
+    margin: 10px 0;
 }
