@@ -295,3 +295,11 @@ body {
     0%, 100% { opacity: 0.2; transform: translateX(-50%) scale(1); }
     50% { opacity: 0.4; transform: translateX(-50%) scale(1.05); }
 }
+
+#particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 7; /* Sits behind the HUD but in front of the planet */
+    pointer-events: none;
+    opacity: 0.6;
+}
